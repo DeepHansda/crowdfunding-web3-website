@@ -5,7 +5,7 @@ function TextInput({label,value,handleChange,placeHolder,inputType,isTextArea}) 
     <div>
         <div>
 
-        <label>{label}</label>
+        <label>{label}*</label>
         </div>
         <div>
 

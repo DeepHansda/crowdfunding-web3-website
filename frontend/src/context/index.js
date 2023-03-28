@@ -24,7 +24,7 @@ const { contract } = useContract(
         form.title,
         form.description,
         form.target,
-        form.deadline,
+        new Date(form.deadline).getTime(),
         form.image,
       ]);
       console.info("contract call successs", data);
