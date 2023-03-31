@@ -10,8 +10,13 @@
   box-sizing: border-box;
 }
 body {
-  background-color: #343a40;
+  background-color:#495057;
 }
 .hover-shadow{
   box-shadow:0 0px 16px 4px #db00b6 ;
+}
+
+.icon:hover + .tooltip{
+  left:60px;
+  opacity: 100;
 }

@@ -72,7 +72,14 @@ export default function StateContextProvider({ children }) {
   };
   return (
     <StateContext.Provider
-      value={{ loading, publishCampaign, connectWallet, getAllCampaigns,address }}
+      value={{
+        loading,
+        publishCampaign,
+        connectWallet,
+        getAllCampaigns,
+        address,
+        contract,
+      }}
     >
       {children}
     </StateContext.Provider>
