@@ -44,7 +44,7 @@ export default function StateContextProvider({ children }) {
 
   const getAllCampaigns = async () => {
     setContractLoading(true);
-    await contract
+    return await contract
       .call("getCampaigns")
       .then((data) => {
         if (data?.length > 0) {
@@ -52,7 +52,7 @@ export default function StateContextProvider({ children }) {
             id: index,
             owner: campaign.owner,
             title: campaign.title,
-            description: campaign.title,
+            description: campaign.description,
             deadline: campaign.deadline.toNumber(),
             target: ethers.utils.formatEther(campaign.target.toString()),
             amountCollected: ethers.utils.formatEther(

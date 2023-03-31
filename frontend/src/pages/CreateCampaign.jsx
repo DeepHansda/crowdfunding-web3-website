@@ -36,12 +36,13 @@ function CreateCampaign() {
   console.log(inputValues);
 
   return (
-    <div>
-      <div>
-        <h2>Create Campaign</h2>
+    <div className="w-screen h-screen flex items-center justify-center ">
+      <div className="w-[400px] bg-[#343a40] text-center rounded-xl py-5 shadow-md hover:shadow-[0_0px_16px_4px_#db00b6] transition-all duration-300">
+      <div className="w-full text-center" >
+        <h2 className="bg-[#495057] w-fit mx-auto px-5 py-2 font-bold text-xl uppercase text-[#db00b6] rounded-lg shadow-lg">Create Campaign</h2>
       </div>
 
-      <div>
+      <div className="px-10">
         <div>
           <form onSubmit={submitHandler}>
             <TextInput
@@ -84,9 +85,10 @@ function CreateCampaign() {
 
             />
 
-            <button type="submit">Submit</button>
+            <button className="px-4 py-2 shadow-sm shadow-black hover:shadow-[0_0px_16px_4px_#db00b6] rounded border border-black font-[Montserrat] text-[#db00b6] uppercase mt-6" type="submit">Submit</button>
           </form>
         </div>
+      </div>
       </div>
     </div>
   );
