@@ -3,8 +3,10 @@ import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import { useStateContext } from "./context";
+import CampaignsDetails from "./pages/CampaignsDetails";
 import CreateCampaign from "./pages/CreateCampaign";
 import Home from "./pages/Home";
+import Profile from "./pages/Profile";
 
 export default function App() {
   return (
@@ -17,6 +19,8 @@ export default function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/createCampaign" element={<CreateCampaign />} />
+              <Route path='/profile' element={<Profile/>}/>
+              <Route path="/campaignDetails" element={<CampaignsDetails/>}/>
             </Routes>
           </div>
         </div>

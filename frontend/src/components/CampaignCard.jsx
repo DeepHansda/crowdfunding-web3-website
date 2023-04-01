@@ -1,11 +1,16 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { daysLeft } from "../utils";
 
 function CampaignCard({ campaign }) {
   const remainingDays = daysLeft(campaign.deadline);
+  const navigate = useNavigate()
+  const navigator = () =>{
+    navigate('/campaignDetails',{state:campaign})
+  }
 
   return (
-    <div className="bg-[#343a40] w-fit shadow-md rounded-lg shadow-black transition-ease duration-200 hover:shadow-[0_0px_16px_4px_#db00b6]">
+    <div className="bg-[#343a40] w-fit shadow-md rounded-lg shadow-black transition-ease duration-200 cursor-pointer hover:shadow-[0_0px_16px_4px_#db00b6]" onClick={()=>navigator()}>
       <div className="overflow-hidden rounded-lg">
         <img src={campaign.image} alt="image" className="max-w-full" />
       </div>

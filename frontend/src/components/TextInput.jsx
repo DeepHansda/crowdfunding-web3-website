@@ -7,6 +7,7 @@ function TextInput({
   placeHolder,
   inputType,
   isTextArea,
+  required,
 }) {
   return (
     <div className="mt-4">
@@ -20,6 +21,7 @@ function TextInput({
             onChange={handleChange}
             placeholder={placeHolder}
             type={inputType}
+            required={required}
             className="py-[10px] px-[20px] shadow-sm shadow-black rounded-xl hover:shadow-[0_0px_16px_4px_#db00b6] focus:shadow-[0_0px_16px_4px_#db00b6] border border-black mr-4 text-white outline-none  font-[Montserrat] text-xs w-full bg-[#495057] mt"
           />
         ) : (
@@ -28,6 +30,7 @@ function TextInput({
             onChange={handleChange}
             placeholder={placeHolder}
             type={inputType}
+            required={required}
             className="py-[10px] px-[20px] shadow-sm shadow-black rounded-full hover:shadow-[0_0px_16px_4px_#db00b6] focus:shadow-[0_0px_16px_4px_#db00b6] border border-black mr-4 text-white outline-none font-[Montserrat] text-xs w-full bg-[#495057] mt"
           />
         )}

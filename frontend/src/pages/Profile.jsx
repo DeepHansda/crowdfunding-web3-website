@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import CampaignCard from "../components/CampaignCard";
 import { useStateContext } from "../context";
 
-function Home() {
-  const { getAllCampaigns, loading, address, contract } = useStateContext();
+function Profile() {
+  const { getUserCampaigns, loading, address, contract } = useStateContext();
   const [campaigns, setCampaigns] = useState([]);
 
   const fetchCampaigns = async () => {
-    const data = await getAllCampaigns();
+    const data = await getUserCampaigns();
     setCampaigns(data);
   };
   useEffect(() => {
@@ -15,7 +15,6 @@ function Home() {
       fetchCampaigns();
     }
   }, [address, contract]);
-
   return (
     <div className="ml-[200px] mt-7">
       {/* <button onClick={()=>fetchCampaigns()}>click</button> */}
@@ -42,4 +41,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Profile;

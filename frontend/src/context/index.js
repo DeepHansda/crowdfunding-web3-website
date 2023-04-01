@@ -13,7 +13,7 @@ const StateContext = createContext();
 export default function StateContextProvider({ children }) {
   const [contractLoading, setContractLoading] = useState(false);
   const { contract } = useContract(
-    "0x5D2c59D7f623350C0e8C8812E117e60D744f4477"
+    "0x79E0B0de32A562E5eA98202C2cCC6EE5B69a115c"
   );
   const { mutateAsync: createCampaign, isLoading } = useContractWrite(
     contract,
@@ -25,7 +25,6 @@ export default function StateContextProvider({ children }) {
   const address = useAddress();
 
   const loading = isLoading || contractLoading;
-  console.log(address);
   const publishCampaign = async (form) => {
     try {
       const data = await createCampaign([
@@ -61,13 +60,68 @@ export default function StateContextProvider({ children }) {
             image: campaign.image,
           }));
           setContractLoading(false);
-          console.log(parsedData);
           return parsedData;
         }
       })
       .catch((err) => {
         setContractLoading(false);
         console.log(err);
+      });
+  };
+
+  const getUserCampaigns = async () => {
+    setContractLoading(true);
+    return await contract
+      .call("getCampaigns")
+      .then((data) => {
+        if (data?.length > 0) {
+          const filteredData = data.filter((cam) => cam.owner == address);
+          const parsedData = filteredData?.map((campaign, index) => ({
+            id: index,
+            owner: campaign.owner,
+            title: campaign.title,
+            description: campaign.description,
+            deadline: campaign.deadline.toNumber(),
+            target: ethers.utils.formatEther(campaign.target.toString()),
+            amountCollected: ethers.utils.formatEther(
+              campaign.amountCollected.toString()
+            ),
+            image: campaign.image,
+          }));
+          setContractLoading(false);
+          return parsedData;
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        setContractLoading(false);
+      });
+  };
+
+  const getDonations = async (id) => {
+    setContractLoading(true);
+    return await contract
+      .call("getDonators", id)
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+        setContractLoading(false);
+      });
+  };
+
+  const fundEth = async (amount, id) => {
+    setContractLoading(true);
+    return await contract
+      .call("donateToCampaign", id, { value: ethers.utils.parseEther(amount) })
+      .then((data) => {
+        console.log(data);
+        setContractLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setContractLoading(false);
       });
   };
   return (
@@ -79,6 +133,9 @@ export default function StateContextProvider({ children }) {
         getAllCampaigns,
         address,
         contract,
+        getUserCampaigns,
+        getDonations,
+        fundEth,
       }}
     >
       {children}
