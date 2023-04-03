@@ -36,6 +36,7 @@ export default function StateContextProvider({ children }) {
         form.image,
       ]);
       console.info("contract call successs", data);
+      alert("Success");
     } catch (err) {
       console.error("contract call failure", err);
     }
@@ -102,8 +103,23 @@ export default function StateContextProvider({ children }) {
     setContractLoading(true);
     return await contract
       .call("getDonators", id)
-      .then((data) => {
-        console.log(data);
+      .then((donations) => {
+        console.log(donations);
+        const donationLength = donations.length;
+        console.log(donationLength)
+        let parsedDonations = [];
+        if (donationLength > 0) {
+          for (let i = 0; i < donationLength; i++) {
+            console.log(donations[1][i].toString())
+            parsedDonations.push({
+              donator: donations[0][i],
+              donation: ethers.utils.formatEther(donations[1][i].toString()),
+            });
+          }
+        }
+        setContractLoading(false);
+        console.log(parsedDonations);
+        return parsedDonations;
       })
       .catch((err) => {
         console.log(err);
@@ -118,6 +134,7 @@ export default function StateContextProvider({ children }) {
       .then((data) => {
         console.log(data);
         setContractLoading(false);
+        alert("Success");
       })
       .catch((err) => {
         console.log(err);

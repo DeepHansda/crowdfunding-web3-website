@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import CampaignCard from "../components/CampaignCard";
+import Loader from "../components/Loader";
 import { useStateContext } from "../context";
 
 function Home() {
@@ -17,6 +18,8 @@ function Home() {
   }, [address, contract]);
 
   return (
+    <Fragment>
+    {loading && <Loader />}
     <div className="ml-[200px] mt-7">
       {/* <button onClick={()=>fetchCampaigns()}>click</button> */}
       <div className="w-[1350px] grid grid-cols-4 gap-4">
@@ -39,6 +42,7 @@ function Home() {
         )}
       </div>
     </div>
+    </Fragment>
   );
 }
 

@@ -14,7 +14,7 @@ export default function App() {
       <Navbar />
       <Sidebar />
       <div className="w-full flex flex-col h-screen relative">
-        <div className="absolute z-30">
+        <div className="absolute z-30 mt-16">
           <div>
             <Routes>
               <Route path="/" element={<Home />} />

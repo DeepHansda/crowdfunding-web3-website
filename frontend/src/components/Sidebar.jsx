@@ -26,8 +26,8 @@ const navItems = [
 ];
 function Sidebar() {
   return (
-    <div className="h-full w-12 shadow-lg shadow-black absolute bg-[#343a40] z-50">
-      <div className="flex items-center flex-col mt-4">
+    <div className="h-full w-12 shadow-lg shadow-black fixed top-0 bg-[#343a40] z-40">
+      <div className="flex items-center flex-col mt-16">
         {navItems.map((item, index) => (
           <div className="group relative flex items-center" key={index}>
             <div className="icon my-4">

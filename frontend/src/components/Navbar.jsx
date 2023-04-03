@@ -7,7 +7,7 @@ function Navbar() {
   const { connectWallet, address } = useStateContext();
   const navigate = useNavigate();
   return (
-    <div className="shadow-lg py-2 bg-[#343a40]">
+    <div className="shadow-lg py-2 bg-[#343a40] fixed z-50 w-full">
       <div className="flex items-center justify-between h-12 px-12">
         <div className="w-8 cursor-pointer" onClick={()=>navigate('/')}>
           <img src={logo} alt="logo" className="max-w-full" />
